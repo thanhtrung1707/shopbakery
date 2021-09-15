@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cake-Bakery</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+</head>
+<body>
+  <header class="main-header">
+      <!-- Logo -->
+          <span class="brand-text"><h3>Manager Cake-bakery shop</h3></span>
+      <br>
+      <!-- Header Navbar: style can be found in header.less -->
+      <nav class="navbar navbar-static-top">
+          <!-- Sidebar toggle button-->
+          <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+              <i class="fa fa-bars"></i>
+          </a>
+          <div class="navbar-custom-menu">
+                      <ul class="dropdown-menu">
+                          <!-- Menu Footer-->
+                          <li class="user-footer">
+                              <div class="pull-left">
+                                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                              </div>
+                              <div class="pull-right">
+                                  <a  href="/">log out</a>
+                              </div>
+                          </li>
+                      </ul>
+          </div>
+      </nav>
+  </header>
+      <section class="sidebar">
+          <!-- sidebar menu: : style can be found in sidebar.less -->
+          <ul class="sidebar-menu" data-widget="tree">
+              <li class="header">LAOYOUT ADMIN</li>
+              <li>
+                  <a href="/users/index">
+                      <i class="fa fa-code"></i> <span>manager products</span>
+                      <span class="pull-right-container">
+                <!-- <small class="label pull-right bg-green">new</small> -->
+              </span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/">
+                      <i class="fa fa-bars"></i> <span>manager order</span>
+                      <span class="pull-right-container">
+                <!--<small class="label pull-right bg-green">new</small>-->
+              </span>
+                  </a>
+              </li>
+              
+              <li>
+                  <a href="/">
+                      <i class="fa fa-th"></i> <span>manager list</span>
+                      <span class="pull-right-container">
+                <!--<small class="label pull-right bg-green">new</small>-->
+              </span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/">
+                      <i class="fa fa-users"></i> <span>users mannager</span>
+                      <span class="pull-right-container">
+                <!--<small class="label pull-right bg-green">new</small>-->
+              </span>
+                  </a>
+              </li>
+              
+          </ul>
+      </section>
+              <div class="container-fluid">
+                <h1>list of products</h1>
+              <table class="table table-bordered">
+                  <!--            Nội dung hiển thị ở đây-->
+                      <%
+                      //Display data table by JavaScript
+                      if (userData.rowCount == 0)
+                      {
+                      %>  
+                      <p>No data found</p>
+                      <%  
+                      } else {
+                        // Display header
+                      %> 
+                    
+                      <table border="1">
+                        <tr>
+                          <th>Id </th>
+                          <th>Cake_name</th>
+                          <th>Price</th>
+                          <th>Date of manufacture</th>
+                          <th>Expiry</th>
+                          <th>Edit/Insert</th>
+                          <th>Delete</th>
+                        </tr>
+                      <%  
+                        // Display all rows , Object data : userData
+                        //all rows: userData.rows, list array [...]
+                        userData.rows.forEach( function(row) {
+                          //Display a row
+                          console.log(row);
+                      %>
+                        <tr>
+                          <td><%= row.id %></td>
+                          <td><%= row.cake_name %></td>
+                          <td><%= row.price %></td>
+                          <td><%= row.date_of_manufacture %></td>
+                          <td><%= row.expiry %></td>
+                          
+                          <td><a href='/users/edit/<%= row.id%>'>Edit</a> </td>
+                          <td><a href='/users/delete/<%= row.id%>'>Delete</a> </td>
+                        </tr>
+                      <%
+                        });
+                      %>
+                      </table> 
+                      <form action="/product/Search" method="POST">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="search" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn-primary" name="submit" value="Search">
+                            <input type="reset">
+                        </div>
+                    </form>
+                      <%
+                      }
+                       %>
+              </tr>
+                       <a href="/users/insert" class="btn btn-primary">Insert <i class="fa fa-plus"></i></a>
+</table>
+</div>      
+          <footer class="main-footer">
+              <div class="pull-right hidden-xs">
+                  <b>Version</b> 2.4.13-pre
+              </div>
+              <p>Try accessing <a href="/restricted">Guess page</a>, then authenticate with "guess" and "guesspass".</p>
+              © 2021 Cloud Computing Class - Greenwich VN
+          </footer>
+          <div class="control-sidebar-bg"></div>
+          <!-- Add the sidebar's background. This div must be placed
+               immediately after the control sidebar -->
+        </div>
+</body>
+</html>
